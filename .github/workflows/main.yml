@@ -1,22 +1,27 @@
-name: 定时同步分支
+name: 自动同步上游仓库
 on:
   schedule:
-    - cron: "0 0 * * *"  # 每天UTC时间0点执行（北京时间+8小时，即早上8点）
-  workflow_dispatch:  # 允许手动触发同步
+    - cron: "0 0 * * *"  # 每天UTC时间0点执行（可自定义时间）
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
-  sync-branches:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - name: 拉取代码仓库
+      - name: 拉取复刻仓库代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 拉取所有分支历史
+          fetch-depth: 0  # 拉取完整历史
 
-      - name: 同步main到dev分支
+      - name: 配置上游仓库
+        run: |
+          git remote add upstream https://github.com/ripaojiedian/freenode.git
+          git fetch upstream
+
+      - name: 同步分支
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git checkout main  # 切换到目标分支（接收更新的分支）
-          git merge origin/main --no-edit  # 合并源分支（提供更新的分支）
-          git push origin main  # 推送到远程dev分支
+          git checkout main  # 要同步的本地分支
+          git merge upstream/main --no-edit  # 合并上游仓库的main分支
+          git push origin main  # 推送到你的复刻仓库
