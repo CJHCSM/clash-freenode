@@ -1,0 +1,22 @@
+name: 定时同步分支
+on:
+  schedule:
+    - cron: "0 0 * * *"  # 每天UTC时间0点执行（北京时间+8小时，即早上8点）
+  workflow_dispatch:  # 允许手动触发同步
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 拉取所有分支历史
+
+      - name: 同步main到dev分支
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git checkout main  # 切换到目标分支（接收更新的分支）
+          git merge origin/main --no-edit  # 合并源分支（提供更新的分支）
+          git push origin main  # 推送到远程dev分支
