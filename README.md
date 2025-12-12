@@ -20,13 +20,14 @@ clash订阅：https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash
 （2023年11月5日，更换掉失效镜像）
 (2024年2月11日，两个镜像均不行了，已更换)
 (2025年1月10日，两个镜像均异常了，更换掉一个，kkgithub保留观察一段时间)
+(2025年12月11日，更换掉失效镜像源)
 
 clash订阅：https://raw.kkgithub.com/ripaojiedian/freenode/main/clash
          
          两个镜像哪个能用用哪个
-https://raw.dgithub.xyz/ripaojiedian/freenode/main/clash
+https://down.nigx.cn/raw.githubusercontent.com/ripaojiedian/freenode/main/clash
 
 通用base64/v2ray订阅: https://raw.kkgithub.com/ripaojiedian/freenode/main/sub
        
          两个镜像哪个能用用哪个
-https://raw.dgithub.xyz/ripaojiedian/freenode/main/sub
+https://down.nigx.cn/raw.githubusercontent.com/ripaojiedian/freenode/main/sub
